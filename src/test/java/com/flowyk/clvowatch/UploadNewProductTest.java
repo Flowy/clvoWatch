@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.function.BooleanSupplier;
-
 @SpringBootTest
 public class UploadNewProductTest {
 
@@ -30,5 +28,20 @@ public class UploadNewProductTest {
         Assertions.assertTrue(() -> result.failReasons().contains(ValidationResult.Fails.MISSING_TITLE), "Result contains correct error");
     }
 
+    @Test
+    void missingPrice() {
+        Watch product = new Watch();
+        UploadResult result = uploader.upload(product);
+        Assertions.assertFalse(result.isSuccess(), "Upload result");
+        Assertions.assertTrue(() -> result.failReasons().contains(ValidationResult.Fails.MISSING_PRICE), "Result contains correct error");
+    }
+
+    @Test
+    void wrongFountainFormat() {
+        Watch product = new Watch().setFountain(new Fountain("áR0lGODlhAQABAIAAAAUEB"));
+        UploadResult result = uploader.upload(product);
+        Assertions.assertFalse(result.isSuccess(), "Upload result");
+        Assertions.assertTrue(() -> result.failReasons().contains(ValidationResult.Fails.UNKNOWN_FOUNTAIN_FORMAT), "Result contains correct error");
+    }
 
 }

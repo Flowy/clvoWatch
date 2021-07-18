@@ -8,7 +8,9 @@ import java.util.List;
 public class ValidationResult implements UploadResult {
 
     public static class Fails {
-        public static String MISSING_TITLE = "missing_title";
+        public static final String MISSING_PRICE = "missing_price";
+        public static final String UNKNOWN_FOUNTAIN_FORMAT = "unknown_fountain_format";
+        public static final String MISSING_TITLE = "missing_title";
     }
 
     private final List<String> failedReasons = new ArrayList<>();

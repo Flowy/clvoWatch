@@ -7,6 +7,8 @@ import org.springframework.util.Assert;
 @SpringBootTest
 public class UploadNewProductTest {
 
+    private ProductUploader uploader = new ProductUploader();
+
     @Test
     void uploadNewProduct() {
         Watch product = new Watch()
@@ -14,7 +16,14 @@ public class UploadNewProductTest {
                 .setPrice(new Price(250000))
                 .setDescription("A watch with a water fountain picture")
                 .setFountain(new Fountain("R0lGODlhAQABAIAAAAUEBA"));
-        UploadResult result = ProductUploader.upload(product);
+        UploadResult result = uploader.upload(product);
         Assert.isTrue(result != null && result.isSuccess(), "Uploading failed");
+    }
+
+    @Test
+    void missingTitle() {
+        Watch product = new Watch();
+        UploadResult result = uploader.upload(product);
+        Assert.isTrue(result != null && !result.isSuccess(), "Uploading succeeded");
     }
 }

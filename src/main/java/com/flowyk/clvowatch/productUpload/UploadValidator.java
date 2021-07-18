@@ -1,7 +1,11 @@
-package com.flowyk.clvowatch;
+package com.flowyk.clvowatch.productUpload;
 
+import com.flowyk.clvowatch.Fountain;
+import com.flowyk.clvowatch.Watch;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UploadValidator {
 
     public ValidationResult validate(Watch product) {

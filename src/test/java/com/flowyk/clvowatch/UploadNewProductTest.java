@@ -1,13 +1,18 @@
 package com.flowyk.clvowatch;
 
+import com.flowyk.clvowatch.productUpload.ProductUploader;
+import com.flowyk.clvowatch.productUpload.UploadResult;
+import com.flowyk.clvowatch.productUpload.ValidationResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class UploadNewProductTest {
 
-    private ProductUploader uploader = new ProductUploader();
+    @Autowired
+    ProductUploader uploader;
 
     @Test
     void uploadNewProduct() {

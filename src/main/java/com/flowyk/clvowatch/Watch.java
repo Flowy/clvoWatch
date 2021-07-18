@@ -1,5 +1,7 @@
 package com.flowyk.clvowatch;
 
+import java.util.Objects;
+
 public class Watch {
     private String title;
     private Price price;
@@ -40,5 +42,18 @@ public class Watch {
     public Watch setFountain(Fountain fountain) {
         this.fountain = fountain;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Watch watch = (Watch) o;
+        return Objects.equals(title, watch.title) && Objects.equals(price, watch.price) && Objects.equals(description, watch.description) && Objects.equals(fountain, watch.fountain);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, price, description, fountain);
     }
 }

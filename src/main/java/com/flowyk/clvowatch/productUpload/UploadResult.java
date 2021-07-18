@@ -1,4 +1,4 @@
-package com.flowyk.clvowatch;
+package com.flowyk.clvowatch.productUpload;
 
 import java.util.Collection;
 
